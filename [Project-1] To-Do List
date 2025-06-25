@@ -6,23 +6,20 @@ import os
 class ToDoListApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Raghav's To-Do List")  # Changed title
+        self.root.title("Raghav's To-Do List")  # title
         self.root.geometry("500x400")
         self.root.configure(bg="#f0f8ff")  # Light blue background
         
-        # Initialize task list
         self.tasks = []
         self.filename = "todo_simple.json"
         self.load_tasks()
         
-        # Create GUI elements
         self.create_widgets()
         
-        # Load tasks into the listbox
         self.update_task_list()
     
     def create_widgets(self):
-        # Header
+
         header_frame = tk.Frame(self.root, bg="#e6f2ff", padx=10, pady=10)
         header_frame.pack(fill=tk.X)
         
@@ -31,7 +28,7 @@ class ToDoListApp:
             font=("Arial", 16, "bold"), bg="#e6f2ff", fg="#333"
         ).pack()
         
-        # Task entry area
+
         input_frame = tk.Frame(self.root, bg="#f0f8ff", padx=10, pady=10)
         input_frame.pack(fill=tk.X)
         
@@ -41,14 +38,14 @@ class ToDoListApp:
         self.task_entry.pack(pady=5)
         self.task_entry.bind("<Return>", self.add_task)  # Add task on Enter key
         
-        # Removed button colors
+
         add_button = tk.Button(
             input_frame, text="Add Task", command=self.add_task,
             font=("Arial", 10), width=10
         )
         add_button.pack(pady=5)
         
-        # Task list
+
         list_frame = tk.Frame(self.root, bg="#f0f8ff", padx=10, pady=5)
         list_frame.pack(fill=tk.BOTH, expand=True)
         
@@ -63,32 +60,32 @@ class ToDoListApp:
         self.task_list.config(yscrollcommand=scrollbar.set)
         scrollbar.config(command=self.task_list.yview)
         
-        # Action buttons
+        # buttons
         button_frame = tk.Frame(self.root, bg="#f0f8ff", padx=10, pady=10)
         button_frame.pack(fill=tk.X)
         
-        # Removed button colors
+
         complete_button = tk.Button(
             button_frame, text="Mark Complete", command=self.mark_complete,
             font=("Arial", 10), width=12
         )
         complete_button.pack(side=tk.LEFT, padx=5)
         
-        # Removed button colors
+
         delete_button = tk.Button(
             button_frame, text="Delete Task", command=self.delete_task,
             font=("Arial", 10), width=12
         )
         delete_button.pack(side=tk.LEFT, padx=5)
         
-        # Removed button colors
+
         clear_button = tk.Button(
             button_frame, text="Clear All", command=self.clear_all,
             font=("Arial", 10), width=12
         )
         clear_button.pack(side=tk.RIGHT, padx=5)
         
-        # Status bar
+
         self.status_var = tk.StringVar()
         self.status_var.set(f"Tasks: {len(self.tasks)}")
         status_bar = tk.Label(
@@ -117,7 +114,7 @@ class ToDoListApp:
             status = "✓" if task.get('completed', False) else "◻"
             self.task_list.insert(tk.END, f"{i}. {status} {task['title']}")
             
-            # Color completed tasks differently
+
             if task.get('completed', False):
                 self.task_list.itemconfig(tk.END, {'fg': '#888888'})
         
