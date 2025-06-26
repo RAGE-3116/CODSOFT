@@ -6,9 +6,9 @@ import os
 class ToDoListApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Raghav's To-Do List")  # title
+        self.root.title("Raghav's To-Do List")
         self.root.geometry("500x400")
-        self.root.configure(bg="#f0f8ff")  # Light blue background
+        self.root.configure(bg="#f0f8ff")
         
         self.tasks = []
         self.filename = "todo_simple.json"
@@ -24,7 +24,7 @@ class ToDoListApp:
         header_frame.pack(fill=tk.X)
         
         tk.Label(
-            header_frame, text="To-Do List",  # Changed header text
+            header_frame, text="To-Do List",
             font=("Arial", 16, "bold"), bg="#e6f2ff", fg="#333"
         ).pack()
         
@@ -36,7 +36,7 @@ class ToDoListApp:
         
         self.task_entry = tk.Entry(input_frame, width=40, font=("Arial", 12))
         self.task_entry.pack(pady=5)
-        self.task_entry.bind("<Return>", self.add_task)  # Add task on Enter key
+        self.task_entry.bind("<Return>", self.add_task)
         
 
         add_button = tk.Button(
@@ -60,32 +60,27 @@ class ToDoListApp:
         self.task_list.config(yscrollcommand=scrollbar.set)
         scrollbar.config(command=self.task_list.yview)
         
-        # buttons
         button_frame = tk.Frame(self.root, bg="#f0f8ff", padx=10, pady=10)
         button_frame.pack(fill=tk.X)
         
-
         complete_button = tk.Button(
             button_frame, text="Mark Complete", command=self.mark_complete,
             font=("Arial", 10), width=12
         )
         complete_button.pack(side=tk.LEFT, padx=5)
         
-
         delete_button = tk.Button(
             button_frame, text="Delete Task", command=self.delete_task,
             font=("Arial", 10), width=12
         )
         delete_button.pack(side=tk.LEFT, padx=5)
         
-
         clear_button = tk.Button(
             button_frame, text="Clear All", command=self.clear_all,
             font=("Arial", 10), width=12
         )
         clear_button.pack(side=tk.RIGHT, padx=5)
         
-
         self.status_var = tk.StringVar()
         self.status_var.set(f"Tasks: {len(self.tasks)}")
         status_bar = tk.Label(
@@ -134,7 +129,7 @@ class ToDoListApp:
         self.tasks.append(new_task)
         self.save_tasks()
         self.update_task_list()
-        self.task_entry.delete(0, tk.END)  # Clear the entry field
+        self.task_entry.delete(0, tk.END)
     
     def get_selected_task_index(self):
         selection = self.task_list.curselection()
